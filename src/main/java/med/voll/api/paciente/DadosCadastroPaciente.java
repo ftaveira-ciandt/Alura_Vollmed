@@ -9,6 +9,10 @@ import med.voll.api.endereco.DadosEndereco;
 
 
 public record DadosCadastroPaciente(
+
+
+        @NotNull
+        Long id,
         @NotBlank
         String nome,
         @NotBlank
