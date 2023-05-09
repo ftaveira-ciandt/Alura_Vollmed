@@ -11,7 +11,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.endereco.Endereco;
-import med.voll.api.medico.DadosAtualizacaoMedico;
+import med.voll.api.historico.Historico;
+
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -21,12 +22,19 @@ import med.voll.api.medico.DadosAtualizacaoMedico;
 @EqualsAndHashCode(of = "id")
 public class Paciente {
 
-    @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private String telefone;
+
     private String cpf;
+
+    @Embedded
+    Historico historico;
 
     @Embedded
     Endereco endereco;
@@ -39,21 +47,28 @@ public class Paciente {
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
+        this.historico = new Historico(dados.historico());
         this.endereco = new Endereco(dados.endereco());
 
     }
 
     public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
-        if (dados.nome() != null){this.nome = dados.nome();
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
         }
-        if (dados.telefone() != null) {this.telefone = dados.telefone();
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
         }
-        if (dados.endereco() != null ) {this.endereco.atualizarInformacoes(dados.endereco());
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+        if (dados.historico() != null) {
+            this.historico.atualizarInformacoes(dados.historico());
         }
     }
+        public void excluir() {
+            this.ativo = false;
+        }
 
-    public void excluir() {
-        this.ativo = false;
     }
 
-}
