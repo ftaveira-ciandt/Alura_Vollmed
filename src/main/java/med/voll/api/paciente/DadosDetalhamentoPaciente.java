@@ -10,5 +10,4 @@ public record DadosDetalhamentoPaciente(Long id, String nome, String email, Stri
         this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getTelefone(), paciente.getCpf(), paciente.getHistorico(), paciente.getEndereco());
     }
 
-
 }
