@@ -1,4 +1,4 @@
-package med.voll.api.historico;
+package med.voll.api.domain.historico;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

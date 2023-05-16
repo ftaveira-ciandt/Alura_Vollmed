@@ -1,4 +1,4 @@
-package med.voll.api.historico;
+package med.voll.api.domain.historico;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Lob;
