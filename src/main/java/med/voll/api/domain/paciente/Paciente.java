@@ -1,4 +1,4 @@
-package med.voll.api.paciente;
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -10,9 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.Endereco;
-import med.voll.api.historico.Historico;
-
+import med.voll.api.domain.endereco.Endereco;
+import med.voll.api.domain.historico.Historico;
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
@@ -53,17 +52,13 @@ public class Paciente {
     }
 
     public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
-        if (dados.nome() != null) {
-            this.nome = dados.nome();
+        if (dados.nome() != null) {this.nome = dados.nome();
         }
-        if (dados.telefone() != null) {
-            this.telefone = dados.telefone();
+        if (dados.telefone() != null) {this.telefone = dados.telefone();
         }
-        if (dados.endereco() != null) {
-            this.endereco.atualizarInformacoes(dados.endereco());
+        if (dados.endereco() != null) {this.endereco.atualizarInformacoes(dados.endereco());
         }
-        if (dados.historico() != null) {
-            this.historico.atualizarInformacoes(dados.historico());
+        if (dados.historico() != null) {this.historico.atualizarInformacoes(dados.historico());
         }
     }
         public void excluir() {

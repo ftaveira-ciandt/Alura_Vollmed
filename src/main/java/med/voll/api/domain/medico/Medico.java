@@ -1,4 +1,4 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -12,8 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.Endereco;
-import med.voll.api.historico.Historico;
+import med.voll.api.domain.endereco.Endereco;
+import med.voll.api.domain.historico.Historico;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -43,16 +43,20 @@ public class Medico {
     private Boolean ativo;
 
     public Medico(final DadosCadastroMedico dados) {
-            this.ativo = true;
-            this.nome = dados.nome();
-            this.email = dados.email();
-            this.telefone = dados.telefone();
-            this.crm = dados.crm();
-            this.especialidade = dados.especialidade();
-            this.endereco = new Endereco(dados.endereco());
-            this.historico = new Historico(dados.historico());
+        this.ativo = true;
+        this.nome = dados.nome();
+        this.email = dados.email();
+        this.telefone = dados.telefone();
+        this.crm = dados.crm();
+        this.especialidade = dados.especialidade();
+        this.endereco = new Endereco(dados.endereco());
+        this.historico = new Historico(dados.historico());
+
+
 
     }
+
+
 
     public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
         if (dados.nome() != null){this.nome = dados.nome();
@@ -61,8 +65,7 @@ public class Medico {
         }
         if (dados.endereco() != null ) {this.endereco.atualizarInformacoes(dados.endereco());
         }
-        if (dados.historico() != null) {
-            this.historico.atualizarInformacoes(dados.historico());
+        if (dados.historico() != null) {this.historico.atualizarInformacoes(dados.historico());
         }
 
     }
