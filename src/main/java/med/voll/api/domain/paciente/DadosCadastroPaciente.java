@@ -13,21 +13,21 @@ public record DadosCadastroPaciente(
 
         @NotNull
         Long id,
-        @NotBlank
+        @NotBlank (message = "{nome.obrigatorio}")
         String nome,
-        @NotBlank
-        @Email
+        @NotBlank (message = "{email.obrigatorio}")
+        @Email (message = "{email.invalido}")
         String email,
-        @NotBlank
+        @NotBlank (message = "{telefone.obrigatorio}")
         String telefone,
-        @NotBlank
-        @Pattern(regexp = "\\d{11}")
+        @NotBlank (message = "{cpf.obrigatorio}")
+        @Pattern(regexp = "\\d{11}", message = "{cpf.invalido}")
         String cpf,
-
-        @NotBlank
-        DadosHistorico historico,
+        @NotNull (message = "{endereco.obrigatorio}")
+        @Valid
+        DadosEndereco endereco,
 
         @NotNull
-        @Valid
-        DadosEndereco endereco ) {
+        DadosHistorico historico ) {
+
 }
